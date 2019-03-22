@@ -1,6 +1,6 @@
 const defaults = {
     NODE_ENV: 'development',
-    SERVER_PORT: 3000,
+    SERVER_PORT:  process.env.PORT || 3000,
     MONGODB_CONN_STRING: 'mongodb://road:road123@ds255309.mlab.com:55309/esafety',
     JWT_SECRET: 'JWT AUTHENTICATION TOKEN FOR HASHING',
     BASE_DIR: __dirname
