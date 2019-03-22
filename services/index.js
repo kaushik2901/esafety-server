@@ -11,7 +11,7 @@ let init = async () => {
         secure: false, // true for 465, false for other ports
         auth: {
             user: "rnbdepartment@gmail.com", // generated ethereal user
-            pass: "rnb@gujarat" // generated ethereal password
+            pass: "rnb@gujarat@gandhinagar" // generated ethereal password
         }
     });
 }
