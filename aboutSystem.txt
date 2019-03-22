@@ -1,0 +1,25 @@
+System
+
+    Authenticate : 
+
+        Login
+        Signup
+        Forgot password
+
+    Near by NGO's and Services : 
+
+        MongoDB spatial Database
+
+    Call Emergency Services : 
+
+        Details to be sent
+        user details
+        location
+        description
+        nearby complaints
+        time and date
+
+    Profile : 
+
+        Update Details
+        Change password
