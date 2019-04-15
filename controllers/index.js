@@ -114,3 +114,54 @@ exports.sendMail = (req, res) => {
             }
         });
 }
+
+exports.getAiqNearLocation = async (req, res) => {
+    if(!req.query.location) {
+        res.json({
+            success: false,
+            data: "'location' required"
+        })
+    }
+
+    try {        
+        let location = req.query.location;
+        let [ lat, lon ] = location.split(',');
+        [ lat, lon ] = [ parseFloat(lat), parseFloat(lon) ];
+
+        let result = await db.Aiq.aggregate([
+            {
+                "$geoNear": {
+                        "near": {
+                                "type": "Point",
+                                "coordinates": [ lon, lat ]
+                        },
+                        "spherical": true,
+                        "distanceField": "distance",
+                }
+            },
+            {
+                "$project": {
+                    "distance": 1,
+                    "properties.name": 1,
+                    "properties.description": 1,
+                }
+            }
+        ]).limit(2);
+
+        result = result.map(item => {
+            return {
+                name: item.properties.name,
+                aiq: item.properties.description,
+                distance: item.distance,
+            }
+        })
+
+        res.json(result);
+
+    } catch(err) {
+        res.json({
+            success: false,
+            data: err.message
+        })
+    }
+}

@@ -15,4 +15,6 @@ module.exports = function(app) {
     app.post('/office', controllers.home);
     app.put('/office', controllers.home);
     app.delete('/office', controllers.home);
+
+    app.get('/aiq', controllers.getAiqNearLocation);
 }
